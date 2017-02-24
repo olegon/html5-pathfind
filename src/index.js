@@ -16,10 +16,29 @@ function getMousePosition(canvas, e) {
     };
 }
 
-function start(width, height) {
-    const map = new Map(width - 64, height - 64, 32, 32);
-    const canvas = document.querySelector('#main-canvas');
+function removeElementById(id) {
+    const element = document.getElementById(id);
 
+    if (element != null) {
+        const parent = element.parentElement;
+
+        parent.removeChild(element);
+    }
+}
+
+function start(width, height) {
+    const TILE_SIZE = 24;
+
+    removeElementById('main-canvas');
+
+    const map = new Map(width - 64, height - 64, TILE_SIZE, TILE_SIZE);  
+
+    const body = document.body;
+    const canvas = document.createElement('canvas');
+    body.appendChild(canvas);
+
+    canvas.id = 'main-canvas';
+    canvas.title = 'Clique para liberar ou obstruir parte do caminho.';
     canvas.width = map.getTotalWidth();
     canvas.height = map.getTotalHeight();
 
@@ -55,7 +74,6 @@ function drawMap(ctx, map) {
 
     const path = getPathTo(map, 0, 0, map.tilesHeightCount - 1, map.tilesWidthCount - 1);
     if (path) {
-        console.log(path);
         drawPath(ctx, path);
     }
 }

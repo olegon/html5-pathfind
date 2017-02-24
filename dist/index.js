@@ -19,10 +19,29 @@ function getMousePosition(canvas, e) {
     };
 }
 
-function start(width, height) {
-    var map = new _map.Map(width - 64, height - 64, 32, 32);
-    var canvas = document.querySelector('#main-canvas');
+function removeElementById(id) {
+    var element = document.getElementById(id);
 
+    if (element != null) {
+        var parent = element.parentElement;
+
+        parent.removeChild(element);
+    }
+}
+
+function start(width, height) {
+    var TILE_SIZE = 24;
+
+    removeElementById('main-canvas');
+
+    var map = new _map.Map(width - 64, height - 64, TILE_SIZE, TILE_SIZE);
+
+    var body = document.body;
+    var canvas = document.createElement('canvas');
+    body.appendChild(canvas);
+
+    canvas.id = 'main-canvas';
+    canvas.title = 'Clique para liberar ou obstruir parte do caminho.';
     canvas.width = map.getTotalWidth();
     canvas.height = map.getTotalHeight();
 
@@ -178,30 +197,56 @@ var Map = exports.Map = function () {
 
         this.tilesWidthCount = Math.floor(width / cellWidth);
         this.tilesHeightCount = Math.floor(height / cellHeight);
+
         this.cellWidth = cellWidth;
         this.cellHeight = cellHeight;
 
-        this.tiles = [];
+        // TODO: sempre deixar um caminho aberto, porém sem força bruta.
 
-        for (var i = 0; i < this.tilesHeightCount; i++) {
-            for (var j = 0; j < this.tilesWidthCount; j++) {
-                this.tiles.push(new Tile(i, j, j * cellWidth, i * cellHeight, cellWidth, cellHeight));
+        var tries = 10;
+
+        while (tries-- > 0) {
+            this.tiles = [];
+
+            for (var i = 0; i < this.tilesHeightCount; i++) {
+                for (var j = 0; j < this.tilesWidthCount; j++) {
+                    this.tiles.push(new Tile(i, j, j * cellWidth, i * cellHeight, cellWidth, cellHeight));
+                }
             }
+
+            if (getPathTo(this, 0, 0, this.tilesHeightCount - 1, this.tilesWidthCount - 1) != null) break;
         }
     }
 
     _createClass(Map, [{
+        key: 'getTileCoordinates',
+        value: function getTileCoordinates(x, y) {
+            var row = Math.floor(y / this.cellHeight);
+            var column = Math.floor(x / this.cellWidth);
+
+            return {
+                row: row,
+                column: column
+            };
+        }
+    }, {
+        key: 'getTileFromCoordinates',
+        value: function getTileFromCoordinates(row, column) {
+            return this.tiles.find(function (tile) {
+                return tile.row == row && tile.column == column;
+            });
+        }
+    }, {
         key: 'handleClick',
         value: function handleClick(_ref) {
             var x = _ref.x,
                 y = _ref.y;
 
-            var row = Math.floor(y / this.cellWidth);
-            var column = Math.floor(x / this.cellHeight);
+            var _getTileCoordinates = this.getTileCoordinates(x, y),
+                row = _getTileCoordinates.row,
+                column = _getTileCoordinates.column;
 
-            var tile = this.tiles.find(function (tile) {
-                return tile.row == row && tile.column == column;
-            });
+            var tile = this.getTileFromCoordinates(row, column);
 
             if (tile !== undefined) {
                 tile.toggleBlock();
