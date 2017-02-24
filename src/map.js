@@ -29,22 +29,43 @@ export class Map {
         this.tilesHeightCount = Math.floor(height / cellHeight);
 
         this.cellWidth = cellWidth;
-        this.cellHeight = cellHeight;
+        this.cellHeight = cellHeight;      
 
-        this.tiles = [];
+        // TODO: sempre deixar um caminho aberto, porém sem força bruta.
 
-        for (let i = 0; i < this.tilesHeightCount; i++) {
-            for (let j = 0; j < this.tilesWidthCount; j++) {
-                this.tiles.push(new Tile(i, j, j * cellWidth, i * cellHeight, cellWidth, cellHeight));
+        let tries = 10;
+
+        while (tries-- > 0) {
+            this.tiles = [];
+
+            for (let i = 0; i < this.tilesHeightCount; i++) {
+                for (let j = 0; j < this.tilesWidthCount; j++) {
+                    this.tiles.push(new Tile(i, j, j * cellWidth, i * cellHeight, cellWidth, cellHeight));
+                }
             }
+
+            if (getPathTo(this, 0, 0, this.tilesHeightCount - 1, this.tilesWidthCount - 1) != null) break;
         }
     }
 
-    handleClick({ x, y }) {
+    getTileCoordinates(x, y) {
         const row = Math.floor(y / this.cellHeight);
         const column = Math.floor(x / this.cellWidth);
 
-        const tile = this.tiles.find((tile) => tile.row == row && tile.column == column);
+        return {
+            row,
+            column
+        };
+    }
+
+    getTileFromCoordinates(row, column) {
+        return this.tiles.find((tile) => tile.row == row && tile.column == column);
+    }
+
+    handleClick({ x, y }) {
+        const { row, column } = this.getTileCoordinates(x, y);
+
+        const tile = this.getTileFromCoordinates(row, column);
 
         if (tile !== undefined) {
             tile.toggleBlock();
