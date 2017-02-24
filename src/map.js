@@ -27,6 +27,7 @@ export class Map {
     constructor (width, height, cellWidth = 10, cellHeight = 10) {
         this.tilesWidthCount = Math.floor(width / cellWidth);
         this.tilesHeightCount = Math.floor(height / cellHeight);
+
         this.cellWidth = cellWidth;
         this.cellHeight = cellHeight;
 
@@ -40,8 +41,8 @@ export class Map {
     }
 
     handleClick({ x, y }) {
-        const row = Math.floor(y / this.cellWidth);
-        const column = Math.floor(x / this.cellHeight);
+        const row = Math.floor(y / this.cellHeight);
+        const column = Math.floor(x / this.cellWidth);
 
         const tile = this.tiles.find((tile) => tile.row == row && tile.column == column);
 
