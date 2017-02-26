@@ -78,11 +78,12 @@ function drawMap(ctx, map) {
     }
 }
 
-function drawPath(ctx, map) {
-    for (let tile of map) {
+function drawPath(ctx, path) {
+    for (let tile of path) {
         ctx.save();
 
         ctx.fillStyle = '#c00';
+        ctx.strokeStyle = '#000';
 
         ctx.fillRect(tile.x, tile.y, tile.width, tile.height);
         ctx.strokeRect(tile.x, tile.y, tile.width, tile.height);
