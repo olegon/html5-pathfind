@@ -80,11 +80,12 @@ function drawMap(ctx, map) {
 
 var timeouts = [];
 function drawPath(ctx, path) {
-    
     timeouts.forEach(timeout => clearTimeout(timeout));
+    timeouts = [];
 
-    let delay = 5;
+    const delay = 5;
     let totalDelay = 0;
+
     for (let tile of path) {
 
         let timeout = setTimeout(function () {

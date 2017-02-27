@@ -4,11 +4,17 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+        <meta name="description" content="Estruturas de dados não existem apenas para encher o saco, pelo contrário, elas são muito úteis para aplicações importantes como encontrar o menor entre dois pontos em um grafo.">
+        <meta name="author" content="Leandro Gonçalves de Oliveira">
+        <meta name="keywords" content="Leandro Gonçalves de Oliveira,olegon,HTML5,Canvas,JavaScript,Estrutura de Dados,Grafos,Pilhas,Filas">
+        <meta name="robots" content="index,follow">
+
         <title>Qual é o menor caminho?</title>
 
         <style>
             html {
                 box-sizing: border-box;
+                font: 16px/1.5em sans-serif;
             }
 
             *,
@@ -17,28 +23,40 @@
                 box-sizing: inherit;
             }
 
-            body {
-                margin: 0;
-                padding: 0;
-                border: none;
-
-                min-height: 100vh;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
+            .container {
+                max-width: 50em;
+                margin: 0 auto;
             }
 
-            #main-canvas {
-                border: 1px solid #000;
+            .container img {
+                max-width: 100%;
+            }
 
-                cursor: pointer;
+            .container p {
+                text-align: justify;
+            }
 
-                display: block;
+            .container a {
+                color: #1a0dab;
+                text-decoration: none;
             }
         </style>
     </head>
     <body>
-        <script src="./dist/index.js" async></script>
+        <div class="container">
+            <h1>Qual o menor caminho?</h1>
+
+            <a href="./demo.html"><img src="./imgs/mapa-sem-caminho.png" alt=""></a>
+            
+
+            <h2>Motivação</h2>
+            <p><strong><em>Pilhas</em> e <em>Filas</em> são úteis sim!</strong> Elas são úteis, por exemplo, para encontrar o menor caminho entre dois pontos de um mapa como na imagem acima. No caso, o menor caminho entre os cantos é:</p>
+            <a href="./demo.html"><img src="./imgs/mapa-com-caminho.png" alt=""></a>
+
+            <h2>Demonstração</h2>
+            <p>A demonstração feita com <em>HTML5 Canvas</em> usa um algoritmo que sempre vai encontrar o menor caminho entre o canto superior esquerdo e o canto inferior direito, quando existir pelo menos um caminho.</p>
+            <p>Você pode interagir clicando em cada ponto para liberar ou obstrutir parte do caminho, sendo que o bloco preto representa um caminho fechado e o bloco branco representa um caminho aberto.</p>
+            <p>Para visualizar a demonstração, <a href="./demo.html">clique aqui</a>.</p>
+        </div>
     </body>
 </html>
