@@ -94,7 +94,7 @@ export function getPathTo(map, fromRow, fromColumn, toRow, toColumn) {
             row: tile.row,
             column: tile.column,
             status: tile.blocked,
-            mapTile: tile
+            originalTile: tile
         });
     }
 
@@ -142,7 +142,7 @@ export function getPathTo(map, fromRow, fromColumn, toRow, toColumn) {
 
         if (found === true) {
             const stack = new Stack();
-            const path = [];
+            const path = new Stack();
 
             stack.push(tiles[toRow][toColumn]);
             path.push(tiles[toRow][toColumn]);
@@ -150,7 +150,7 @@ export function getPathTo(map, fromRow, fromColumn, toRow, toColumn) {
             while (!stack.empty()) {
                 var currentNode = stack.pop();
 
-                path.push(currentNode.mapTile);
+                path.push(currentNode.originalTile);
 
                 if (currentNode.row > 0
                     && tiles[currentNode.row - 1][currentNode.column].status == currentNode.status + 1) {
@@ -171,7 +171,12 @@ export function getPathTo(map, fromRow, fromColumn, toRow, toColumn) {
                 }
             }
 
-            return path;
+            const array = [];
+            while (!path.empty()) {
+                array.push(path.pop());
+            }
+
+            return array;
         }
     }
 
