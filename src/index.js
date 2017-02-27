@@ -78,16 +78,29 @@ function drawMap(ctx, map) {
     }
 }
 
+var timeouts = [];
 function drawPath(ctx, path) {
+    
+    timeouts.forEach(timeout => clearTimeout(timeout));
+
+    let delay = 5;
+    let totalDelay = 0;
     for (let tile of path) {
-        ctx.save();
 
-        ctx.fillStyle = '#c00';
-        ctx.strokeStyle = '#000';
+        let timeout = setTimeout(function () {
+            ctx.save();
 
-        ctx.fillRect(tile.x, tile.y, tile.width, tile.height);
-        ctx.strokeRect(tile.x, tile.y, tile.width, tile.height);
+            ctx.fillStyle = '#c00';
+            ctx.strokeStyle = '#000';
 
-        ctx.restore();
+            ctx.fillRect(tile.x, tile.y, tile.width, tile.height);
+            ctx.strokeRect(tile.x, tile.y, tile.width, tile.height);
+
+            ctx.restore();
+        }, totalDelay);   
+
+        timeouts.push(timeout);
+
+        totalDelay += delay;     
     }
 }
