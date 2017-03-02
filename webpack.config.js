@@ -2,20 +2,20 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: [
+        'babel-polyfill',
+        './src/index.js'
+    ],
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: './dist',
         filename: 'index.js'
     },
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.jsx?$/,
                 use: 'babel-loader?presets[]=es2015'
             }
         ]
-    },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin()
-    ]
+    }
 };
