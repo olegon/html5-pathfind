@@ -1,11 +1,12 @@
-const path = require('path');
-const webpack = require('webpack');
+var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 
 module.exports = {
-    entry: [
-        'babel-polyfill',
-        './src/index.js'
-    ],
+    entry: {
+        vendor: [
+            'babel-polyfill'
+        ],
+        main: './src/index.js'
+    },
     output: {
         path: './dist',
         filename: 'index.js'
@@ -17,5 +18,11 @@ module.exports = {
                 use: 'babel-loader?presets[]=es2015'
             }
         ]
-    }
+    },
+    plugins: [
+        new CommonsChunkPlugin({
+            name: "vendor",
+            filename: "vendor.bundle.js"
+        })
+    ]
 };
