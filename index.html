@@ -28,6 +28,11 @@
                 margin: 0 auto;
             }
 
+            .container h1 {
+                line-height: 1em;
+                text-align: center;
+            }
+
             .container img {
                 max-width: 100%;
             }
@@ -44,19 +49,25 @@
     </head>
     <body>
         <div class="container">
-            <h1>Qual o menor caminho?</h1>
+            <h1>Qual é o menor caminho entre dois quadrados na imagem abaixo?</h1>
 
-            <a href="./demo.html"><img src="./imgs/mapa-sem-caminho.png" alt=""></a>
-            
+            <a href="./demo.html"><img src="./imgs/mapa-sem-caminho.png" alt=""></a>      
 
-            <h2>Motivação</h2>
-            <p><strong><em>Pilhas</em> e <em>Filas</em> são úteis sim!</strong> Elas são úteis, por exemplo, para encontrar o menor caminho entre dois pontos de um mapa como na imagem acima. No caso, o menor caminho entre os cantos é:</p>
+            <h2 title="Too long, don't read.">TL;DR;</h2>
+            <p><a href="./demo.html">Clique aqui</a> para pular para a demonstração.</p>
+
+            <h2>O menor caminho entre os cantos</h2>      
+            <p>A imagem representa um mapa: quadradinhos brancos representam caminho livre e quadradinhos pretos representam paredes. Na imagem abaixo, o menor caminho entre o canto superior esquerdo e o canto inferior direito está destacado por quadradinhos vermelhos.</p>
+
             <a href="./demo.html"><img src="./imgs/mapa-com-caminho.png" alt=""></a>
 
-            <h2>Demonstração</h2>
-            <p>A demonstração feita com <em>HTML5 Canvas</em> usa um algoritmo que sempre vai encontrar o menor caminho entre o canto superior esquerdo e o canto inferior direito, quando existir pelo menos um caminho.</p>
-            <p>Você pode interagir clicando em cada ponto para liberar ou obstrutir parte do caminho, sendo que o bloco preto representa um caminho fechado e o bloco branco representa um caminho aberto.</p>
-            <p>Para visualizar a demonstração, <a href="./demo.html">clique aqui</a>.</p>
+            <h2>Motivação</h2>
+            <p><strong>Estruturas de dados são interessantes sim!</strong> <em>Pilhas</em> e <em>Filas</em> são estruturas de dados simples, porém úteis para responder essa questão.</p>
+
+            <h2>Demonstração Interativa</h2>
+            <p>A demonstração feita com <em>HTML5 Canvas</em> usa um algoritmo que sempre vai destacar o menor caminho entre o canto superior esquerdo e o canto inferior direito. Quando não existir um caminho entre esses cantos, nada será destacado.</p>
+            <p>Você pode interagir clicando em cada quadradinho para liberar ou obstrutir o caminho.</p>
+            <p><a href="./demo.html">Clique aqui</a> para visualizar a demonstração.</p>
         </div>
     </body>
 </html>
