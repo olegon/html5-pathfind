@@ -1,73 +1,78 @@
 <!doctype html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <meta name="description" content="Estruturas de dados não existem apenas para encher o saco, pelo contrário, elas são muito úteis para aplicações importantes como encontrar o menor entre dois pontos em um grafo.">
-        <meta name="author" content="Leandro Gonçalves de Oliveira">
-        <meta name="keywords" content="Leandro Gonçalves de Oliveira,olegon,HTML5,Canvas,JavaScript,Estrutura de Dados,Grafos,Pilhas,Filas">
-        <meta name="robots" content="index,follow">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <title>Qual é o menor caminho?</title>
+    <meta name="description" content="Estruturas de dados não existem apenas para encher o saco, pelo contrário, elas são muito úteis para aplicações importantes como encontrar o menor caminho entre dois pontos de um grafo.">
+    <meta name="author" content="Leandro Gonçalves de Oliveira">
+    <meta name="keywords" content="Leandro Gonçalves de Oliveira,olegon,HTML5,Canvas,JavaScript,Estrutura de Dados,Grafos,Pilhas,Filas">
+    <meta name="robots" content="index,follow">
 
-        <style>
-            html {
-                box-sizing: border-box;
-                font: 16px/1.5em sans-serif;
-            }
+    <title>Qual é o menor caminho?</title>
 
-            *,
-            *::before,
-            *::after {
-                box-sizing: inherit;
-            }
+    <style>
+        html {
+            box-sizing: border-box;
+            font: 16px/1.5em sans-serif;
+        }
 
-            .container {
-                max-width: 50em;
-                margin: 0 auto;
-            }
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit;
+        }
 
-            .container h1 {
-                line-height: 1em;
-                text-align: center;
-            }
+        .container {
+            max-width: 50em;
+            margin: 0 auto;
+            padding: 0.5rem 0;
+        }
 
-            .container img {
-                max-width: 100%;
-            }
+        .container h1 {
+            line-height: 1em;
+            text-align: center;
+        }
 
-            .container p {
-                text-align: justify;
-            }
+        .container img {
+            max-width: 100%;
+        }
 
-            .container a {
-                color: #1a0dab;
-                text-decoration: none;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <h1>Qual é o menor caminho entre dois quadrados na imagem abaixo?</h1>
+        .container p {
+            text-align: justify;
+        }
 
-            <a href="./demo.html"><img src="./imgs/mapa-sem-caminho.png" alt=""></a>      
+        .container a {
+            color: #1a0dab;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
 
-            <h2 title="Too long, don't read.">TL;DR;</h2>
-            <p><a href="./demo.html">Clique aqui</a> para pular para a demonstração.</p>
+<body>
+    <div class="container">
+        <h1>Qual é o menor caminho entre dois quadrados na imagem abaixo?</h1>
 
-            <h2>O menor caminho entre os cantos</h2>      
-            <p>A imagem representa um mapa: quadradinhos brancos representam caminho livre e quadradinhos pretos representam paredes. Na imagem abaixo, o menor caminho entre o canto superior esquerdo e o canto inferior direito está destacado por quadradinhos vermelhos.</p>
+        <a href="./demo.html"><img src="./imgs/mapa-sem-caminho.png" alt=""></a>
 
-            <a href="./demo.html"><img src="./imgs/mapa-com-caminho.png" alt=""></a>
+        <h2 title="Too long, don't read.">TL;DR;</h2>
+        <p><a href="./demo.html">Clique aqui</a> para pular para a demonstração.</p>
 
-            <h2>Motivação</h2>
-            <p><strong>Estruturas de dados são interessantes sim!</strong> <em>Pilhas</em> e <em>Filas</em> são estruturas de dados simples, porém úteis para responder essa questão.</p>
+        <h2>O menor caminho entre os cantos</h2>
+        <p>Considerando que a imagem representa um mapa onde quadrados brancos são caminhos livres e quadrados pretos são caminhos obstruídos, podemos nos perguntar: qual é o menor caminho entre o quadrado superior esquerdo e o quadrado inferior direito?</p>
 
-            <h2>Demonstração Interativa</h2>
-            <p>A demonstração feita com <em>HTML5 Canvas</em> usa um algoritmo que sempre vai destacar o menor caminho entre o canto superior esquerdo e o canto inferior direito. Quando não existir um caminho entre esses cantos, nada será destacado.</p>
-            <p>Você pode interagir clicando em cada quadradinho para liberar ou obstrutir o caminho.</p>
-            <p><a href="./demo.html">Clique aqui</a> para visualizar a demonstração.</p>
-        </div>
-    </body>
+        <a href="./demo.html"><img src="./imgs/mapa-com-caminho.png" alt=""></a>
+
+        <h2>Motivação</h2>
+        <p><strong>Estruturas de dados são interessantes sim!</strong> <em>Pilhas</em> e <em>Filas</em> são estruturas de dados básicas, porém úteis para responder esse tipo de questão.</p>
+
+        <h2>Demonstração Interativa</h2>
+        <p>A demonstração feita com <em>HTML5 Canvas</em> usa um algoritmo que vai destacar o menor caminho entre o canto superior esquerdo e o canto inferior direito, se este caminho existir.</p>
+        <p>Você pode interagir clicando em cada quadrado para abrir ou fechar o caminho.</p>
+        <p><a href="./demo.html">Clique aqui</a> para visualizar a demonstração.</p>
+    </div>
+</body>
+
 </html>
